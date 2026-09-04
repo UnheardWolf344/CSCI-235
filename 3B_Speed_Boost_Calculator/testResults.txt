@@ -1,0 +1,14 @@
+	In the first test, I used the given example input from the instructions.
+My output was only the first person with no spaces in between each 
+output section. As such, I decided to make changes to the original program to
+read every racer and then output their appropriate values.
+	In the second test, I had fixed all of the previously mentioned problems.
+However, the new speed values were just 1/10 of what they were, not 110%.
+I updated the code to work properly with the new speed calculations. the
+only remaining problem is to format the output file properly, such that
+the new speed values have only two decimal places.
+	Finally, once I ran it through codeGrade, it had lots of issues. Apparently,
+the speed boost value needed to accept doubles / floating-point values,
+which I did not know from the instructions. I changed speedBoostPercentage from
+an int to a double to rectify this issue. After this, all of the tests passed,
+so I finally went though and added necessary comments and formatting.
