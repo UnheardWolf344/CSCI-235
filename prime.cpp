@@ -1,19 +1,30 @@
+/*
+	This program uses different algorithms to find all primes from 2 to
+	a given max value, then outputs them along with the time it took
+	to compute them.
+
+	by Griffin Rzewnicki
+*/
+
 #include <iostream>
 #include <vector>
 #include <chrono>
 #include <cmath>
+#include <fstream>
 
 using namespace std;
 
 // takes about 0.376 seconds to find all primes to 1 million.
+// takes about 249.2 seconds to find all primes to 100 million.
 static void getPrimesBasic (int maxVal, vector<int>& primes);
 
 // takes about 0.168 seconds to find all primes to 1 million.
+// takes about 17.7 seconds to find all primes to 100 million.
 static void getPrimesEratosthenes (int maxVal, vector<int>& primes);
 
 int main () {
 	// define the value to find primes up to.
-	constexpr int MAX_VAL = 1e6;
+	constexpr int MAX_VAL = 1e9;
 
 	// create the vector array to hold the final primes.
 	vector<int> primes{};
@@ -28,14 +39,21 @@ int main () {
 	auto endTime = chrono::high_resolution_clock::now();
 
 	// output all of the primes separated by ','
+
+	ofstream ostream;
+	ostream.open("primes.txt");
+
 	for (int prime : primes) {
-		cout << prime << ",";
+		ostream << prime << endl;
 	}
+
+	ostream.close();
 
 	cout << endl << endl;
 	
 	// display time taken
-	cout << "The program took " << chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count() << "ms to run."  << endl; 
+	cout << "The program took " << chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count() << "ms to run."  << endl;
+	cout << "Found " << primes.size() << " primes." << endl; 
 	
 	return 0;
 }
@@ -70,6 +88,7 @@ static void getPrimesBasic (int maxVal, vector<int>& primes) {
 // adds the number to itself until the result is the max value or more,
 // then marks each one of these results as nonprime.
 // finally, it adds all the nonmarked numbers to primes.
+// see https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 static void getPrimesEratosthenes (int maxVal, vector<int>& primes) {
 	// since the vector starts at 2, we have to shift the
 	// access to the correct spot so that arr[1] == 1
@@ -95,7 +114,7 @@ static void getPrimesEratosthenes (int maxVal, vector<int>& primes) {
 	// go through the array of marked numbers.
 	// for each one not marked as nonprime (thus, prime),
 	// add it to the primes array
-	for (int i = 0; i < isPrime.size(); i++) {
+	for (int i = 0; i < static_cast<int>(isPrime.size()); i++) {
 		if (isPrime[i]) primes.push_back(i + VECTOR_ACCESS_SHIFT);
 	}
 }
