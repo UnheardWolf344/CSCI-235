@@ -25,8 +25,9 @@
 using namespace std;
 
 int main () {
-	// use a string for the output file. Probably unnecessary, but it makes it
-	// easier to change.
+	// use a string for the input and output file. Probably unnecessary,
+	// but it makes it easier to change.
+	const string INPUT_FILE = "racerSpeedInfo.txt";
 	const string OUTPUT_FILE = "racerSpeedUpdated.txt";
 
 	// variables read from the input file.
@@ -43,7 +44,7 @@ int main () {
 	ofstream outData;
 	
 	// open up the files and set formatting
-	inData.open("racerSpeedInfo.txt");
+	inData.open(INPUT_FILE);
 	outData.open(OUTPUT_FILE);	
 	outData << fixed << setprecision(2);
 

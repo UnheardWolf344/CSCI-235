@@ -12,3 +12,5 @@ the speed boost value needed to accept doubles / floating-point values,
 which I did not know from the instructions. I changed speedBoostPercentage from
 an int to a double to rectify this issue. After this, all of the tests passed,
 so I finally went though and added necessary comments and formatting.
+	In order to be able to test with multiple different input files and output
+files, I just renamed the constants at the top.

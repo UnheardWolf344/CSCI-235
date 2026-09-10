@@ -104,9 +104,8 @@ int main () {
 		// calculate the total purchase price and the amount saved via discounts
 		total = pricePerDisc * inputDiscNumber;
 
-		// here, instead of simply doing total - discount, we thereby are 
-		// obligated to partake in the completion of the task known heretofore 
-		// as taking the negative of the inverse of that.
+		// here, instead of simply doing total - discount, we need to take the
+		// negative of the inverse of that.
 		// this way, if there is no discount, it comes out to negative
 		// zero instead of zero. 
 		totalSavings = -((chosenDiscPrice * inputDiscNumber) - total);
